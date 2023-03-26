@@ -16,11 +16,18 @@
 }  
 else
 {
-    <ul>
-        @foreach (string e in ViewBag.events)
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        @foreach (KeyValuePair<string, string> e in ViewBag.events)
         {
-            <li>@e</li>
+            <tr>
+                <td>@e.Key</td>
+                <td>@e.Value</td>
+            </tr>
         }
-    </ul>
+    </table>
 }
 
