@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+td {
+    padding: 10px;
+    margin: 10px;
+}
