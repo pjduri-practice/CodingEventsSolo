@@ -17,8 +17,14 @@ body {
   margin-bottom: 60px;
 }
 
+<<<<<<< HEAD
 td, th {
     padding: 10px;
     margin: 10px;
     border: inset;
+=======
+td {
+    padding: 10px;
+    margin: 10px;
+>>>>>>> 3d91e5f49e3e3dc622004535836c6787c0c53426
 }
