@@ -21,11 +21,11 @@ else
             <th>Name</th>
             <th>Description</th>
         </tr>
-        @foreach (KeyValuePair<string, string> e in ViewBag.events)
+        @foreach (Event e in ViewBag.events)
         {
             <tr>
-                <td>@e.Key</td>
-                <td>@e.Value</td>
+                <td>@e.Name</td>
+                <td>@e.Description</td>
             </tr>
         }
     </table>
