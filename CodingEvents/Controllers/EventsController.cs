@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CodingEvents.Models;
 using CodingEvents.Data;
+using Microsoft.Extensions.Logging;
 
 namespace CodingEvents.Controllers
 {
@@ -48,15 +49,22 @@ namespace CodingEvents.Controllers
             return Redirect("/events");
         }
 
-        public IActionResult Edit()
+        [HttpGet(("events/edit/{eventId}"))]
+        public IActionResult Edit(int eventId)
         {
+            Event editEvent = EventData.GetById(eventId);
+            ViewBag.editEvent = editEvent;
+            ViewBag.editTitle = $"Edit Event {editEvent.Name} (id={editEvent.Id})";
 
             return View();
         }
 
-        [HttpPost("events/edit/{eventId}")]
+        [HttpPost("Events/edit")]
         public IActionResult SubmitEditEventForm(int eventId, string name, string description)
         {
+            Event editEvent = EventData.GetById(eventId);
+            editEvent.Name = name;
+            editEvent.Description = description;
 
             return Redirect("/Events");
         }
