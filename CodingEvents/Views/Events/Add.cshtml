@@ -6,11 +6,16 @@
 
 <h1>Add Event</h1>
 <form method="post">
-    <label>Name:</label>
-        <input name="name" type="text" />
+    <div class="form-group">
+        <label>
+            Name:
+            <input name="name" type="text" />
+        </label><br />
+        <label>
+            Description:
+        <input name="description" type="text" />
+        </label>
+    </div>
     
-    <label>Description:</label>
-        <input name="description" type="textarea" />
-    
-    <input type="submit" value="Add Event" />
+    <input type="submit" value="Add Event" class="btn btn-primary"/>
 </form>
