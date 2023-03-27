@@ -45,6 +45,19 @@ namespace CodingEvents.Controllers
             {
                 EventData.Remove(id);
             }
+            return Redirect("/events");
+        }
+
+        public IActionResult Edit()
+        {
+
+            return View();
+        }
+
+        [HttpPost("events/edit/{eventId}")]
+        public IActionResult SubmitEditEventForm(int eventId, string name, string description)
+        {
+
             return Redirect("/Events");
         }
 
