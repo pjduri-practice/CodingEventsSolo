@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CodingEvents.Models;
+using CodingEvents.Data;
 
 namespace CodingEvents.Controllers
 {
@@ -10,7 +11,7 @@ namespace CodingEvents.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.events = Events;
+            ViewBag.events = EventData.GetAll();
             return View();
         }
 
@@ -25,7 +26,7 @@ namespace CodingEvents.Controllers
         [HttpPost("events/add")]
         public IActionResult NewEvent(string name, string description) 
         {
-            Events.Add(new Event(name, description));
+            EventData.Add(new Event(name, description));
 
             return Redirect("/events");
         }
