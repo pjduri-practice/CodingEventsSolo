@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CodingEvents.Models;
 using CodingEvents.Data;
+//using Microsoft.Extensions.Logging;
 
 namespace CodingEvents.Controllers
 {
