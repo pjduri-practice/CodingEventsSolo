@@ -12,7 +12,7 @@ namespace CodingEvents.Data
 
         public static void Add(Event newEvent)
         {
-            Events.Add(newEvent.Id, newEvent)
+            Events.Add(newEvent.Id, newEvent);
         }
 
         public static void Remove(int id)
