@@ -12,11 +12,19 @@
     <div class="form-group">
         <label asp-for="Name">Event Name</label>
         <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div>
         <label asp-for="Description"></label>
         <input asp-for="Description" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    
+    <div>
+        <label asp-for="ContactEmail">Contact Email</label>
+        <input asp-for="ContactEmail" />
+        <span asp-validation-for="ContactEmail" class="text-danger"></span>
     </div>
     
     <input type="submit" value="Add Event" class="btn btn-primary"/>

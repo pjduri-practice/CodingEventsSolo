@@ -12,7 +12,7 @@ namespace CodingEvents.ViewModels
         [Required(ErrorMessage = "Event description is required.")]
         [StringLength(500, ErrorMessage = "Description is over 500 characters.")]
         public string? Description { get; set; }
-        //
+        
         [EmailAddress]
         public string? ContactEmail { get; set; }
 

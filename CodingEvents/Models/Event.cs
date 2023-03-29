@@ -6,6 +6,7 @@
         private static int nextId = 1;
         public string? Name { get; set; }
         public string? Description { get; set; }
+        public string? ContactEmail { get; set; }
 
         public Event()
         {
@@ -13,10 +14,11 @@
             nextId++;
         }
 
-        public Event(string name, string description): this()
+        public Event(string name, string description, string contactEmail): this()
         {
             Name = name;
             Description = description;
+            ContactEmail = contactEmail;
         }
 
         public override string? ToString()
