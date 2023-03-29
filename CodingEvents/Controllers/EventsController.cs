@@ -2,36 +2,42 @@
 using CodingEvents.Models;
 using CodingEvents.Data;
 using Microsoft.Extensions.Logging;
+using CodingEvents.ViewModels;
 
 namespace CodingEvents.Controllers
 {
     public class EventsController : Controller
     {
-        private static List<Event> Events = new List<Event>();
-
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.events = EventData.GetAll();
-            return View();
+            List<Event> events = new List<Event>(EventData.GetAll());
+            return View(events);
         }
 
         // GET: /<controller>/add
         [HttpGet]
         public IActionResult Add() 
         {
-            return View();
+            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            return View(addEventViewModel);
         }
 
         // POST: /<controller>/add
-        [HttpPost("events/add")]
-        public IActionResult NewEvent(Event newEvent) 
+        [HttpPost]
+        public IActionResult Add(AddEventViewModel addEventViewModel) 
         {
+            Event newEvent = new Event
+            {
+                Name = addEventViewModel.Name,
+                Description = addEventViewModel.Description
+            };
             EventData.Add(newEvent);
 
             return Redirect("/events");
         }
 
+        // GET: /<controller>/delete
         public IActionResult Delete()
         {
             ViewBag.events = EventData.GetAll();
@@ -39,6 +45,7 @@ namespace CodingEvents.Controllers
             return View();
         }
 
+        // POST: /<controller>
         [HttpPost]
         public IActionResult Delete(int[] eventIds)
         {
@@ -49,6 +56,7 @@ namespace CodingEvents.Controllers
             return Redirect("/events");
         }
 
+        // GET: /events/edit/{eventId}
         [HttpGet(("events/edit/{eventId}"))]
         public IActionResult Edit(int eventId)
         {
@@ -59,7 +67,8 @@ namespace CodingEvents.Controllers
             return View();
         }
 
-        [HttpPost("Events/edit")]
+        // POST: /events/edit
+        [HttpPost("events/edit")]
         public IActionResult SubmitEditEventForm(int eventId, string name, string description)
         {
             Event editEvent = EventData.GetById(eventId);

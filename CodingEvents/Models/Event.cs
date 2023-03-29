@@ -4,8 +4,8 @@
     {
         public int Id { get; }
         private static int nextId = 1;
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
 
         public Event()
         {
