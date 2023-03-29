@@ -33,7 +33,9 @@ namespace CodingEvents.Controllers
                 {
                     Name = addEventViewModel.Name,
                     Description = addEventViewModel.Description,
-                    ContactEmail = addEventViewModel.ContactEmail
+                    ContactEmail = addEventViewModel.ContactEmail,
+                    Location = addEventViewModel.Location,
+                    EstAttendance = addEventViewModel.EstAttendance
                 };
                 EventData.Add(newEvent);
                 return Redirect("/events");
@@ -73,11 +75,14 @@ namespace CodingEvents.Controllers
 
         // POST: /events/edit
         [HttpPost("events/edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string description)
+        public IActionResult SubmitEditEventForm(int eventId, string name, string description, string contactEmail, string location, int estAttendance)
         {
             Event editEvent = EventData.GetById(eventId);
             editEvent.Name = name;
             editEvent.Description = description;
+            editEvent.ContactEmail = contactEmail;
+            editEvent.Location = location;
+            editEvent.EstAttendance = estAttendance;
 
             return Redirect("/Events");
         }

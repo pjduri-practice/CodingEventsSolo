@@ -3,19 +3,39 @@
 *@
 @{
 }
+@using CodingEvents.ViewModels;
+@model AddEventViewModel;
 
 <h1>@ViewBag.editTitle</h1>
 
 <form method="post" action="/events/edit">
     <div class="form-group">
+
         <label>
             Name:
             <input name="name" type="text" value="@ViewBag.editEvent.Name"/>
         </label><br />
+
         <label>
             Description:
-        <input name="description" type="text" value="@ViewBag.editEvent.Description"/>
-        </label>
+            <input name="description" type="text" value="@ViewBag.editEvent.Description"/>
+        </label><br />
+
+        <label>
+            Contact Email:
+            <input name="contactEmail" type="text" value="@ViewBag.editEvent.ContactEmail"/>
+        </label><br />
+
+        <label>
+            Location:
+            <input name="location" type="text" value="@ViewBag.editEvent.Location"/>
+        </label><br />
+
+        <label>
+            Estimated Attendance:
+            <input name="estAttendance" type="text" value="@ViewBag.editEvent.EstAttendance"/>
+        </label><br />
+
     </div>
     <input type="hidden" value="@ViewBag.editEvent.Id" name="eventId" />
     <input type="submit" value="Edit Event" class="btn btn-primary"/>

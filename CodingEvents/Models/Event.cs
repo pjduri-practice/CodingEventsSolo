@@ -7,6 +7,8 @@
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? ContactEmail { get; set; }
+        public string? Location { get; set; }
+        public int? EstAttendance { get; set; }
 
         public Event()
         {
@@ -14,11 +16,13 @@
             nextId++;
         }
 
-        public Event(string name, string description, string contactEmail): this()
+        public Event(string name, string description, string contactEmail, string location, int estAttendance): this()
         {
             Name = name;
             Description = description;
             ContactEmail = contactEmail;
+            Location = location;
+            EstAttendance = estAttendance;
         }
 
         public override string? ToString()

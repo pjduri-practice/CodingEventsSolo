@@ -26,6 +26,18 @@
         <input asp-for="ContactEmail" />
         <span asp-validation-for="ContactEmail" class="text-danger"></span>
     </div>
+
+    <div>
+        <label asp-for="Location"></label>
+        <input asp-for="Location" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="EstAttendance"></label>
+        <input asp-for="EstAttendance" />
+        <span asp-validation-for="EstAttendance" class="text-danger"></span>
+    </div>
     
     <input type="submit" value="Add Event" class="btn btn-primary"/>
 </form>

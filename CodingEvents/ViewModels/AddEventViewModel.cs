@@ -16,5 +16,12 @@ namespace CodingEvents.ViewModels
         [EmailAddress]
         public string? ContactEmail { get; set; }
 
+        [Required(ErrorMessage = "Must provide a location (or instructions for remote events")]
+        public string? Location { get; set; }
+
+        [Required(ErrorMessage = "Please provide estimated attendance")]
+        [Range(0, 100000, ErrorMessage = "Attendance out of range.")]
+        public int EstAttendance { get; set; }
+
     }
 }
