@@ -8,10 +8,17 @@ namespace CodingEvents.Controllers
 {
     public class EventsController : Controller
     {
+        private EventDbContext context;
+
+        public EventsController (EventDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Event> events = new List<Event>(EventData.GetAll());
+            List<Event> events = context.Events.ToList();
             return View(events);
         }
 
@@ -37,7 +44,10 @@ namespace CodingEvents.Controllers
                     Location = addEventViewModel.Location,
                     EstAttendance = addEventViewModel.EstAttendance
                 };
-                EventData.Add(newEvent);
+
+                context.Events.Add(newEvent);
+                context.SaveChanges();
+                
                 return Redirect("/events");
             }
             return View(addEventViewModel);
@@ -46,7 +56,7 @@ namespace CodingEvents.Controllers
         // GET: /<controller>/delete
         public IActionResult Delete()
         {
-            ViewBag.events = EventData.GetAll();
+            ViewBag.events = context.Events.ToList();
 
             return View();
         }
@@ -57,8 +67,11 @@ namespace CodingEvents.Controllers
         {
             foreach (int id in eventIds)
             {
-                EventData.Remove(id);
+                Event? theEvent = context.Events.Find(id);
+                context.Events.Remove(theEvent);
             }
+
+            context.SaveChanges();
             return Redirect("/events");
         }
 
@@ -66,7 +79,7 @@ namespace CodingEvents.Controllers
         [HttpGet(("events/edit/{eventId}"))]
         public IActionResult Edit(int eventId)
         {
-            Event editEvent = EventData.GetById(eventId);
+            Event? editEvent = context.Events.Find(eventId);
             ViewBag.editEvent = editEvent;
             ViewBag.editTitle = $"Edit Event {editEvent.Name} (id={editEvent.Id})";
 
@@ -77,7 +90,7 @@ namespace CodingEvents.Controllers
         [HttpPost("events/edit")]
         public IActionResult SubmitEditEventForm(int eventId, string name, string description, string contactEmail, string location, int estAttendance)
         {
-            Event editEvent = EventData.GetById(eventId);
+            Event? editEvent = context.Events.Find(eventId);
             editEvent.Name = name;
             editEvent.Description = description;
             editEvent.ContactEmail = contactEmail;
